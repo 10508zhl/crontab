@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"runtime"
 )
 
 var port *string = flag.String("port", ":8080", "web port")
 var logs *string = flag.String("logs", "logs/", "log path")
-var conf *string = flag.String("conf", "crontab.conf", "crontab config")
+var conf *string = flag.String("conf", "config.json", "crontab config")
 var stopCh chan bool = make(chan bool)
 var startCh chan bool = make(chan bool)
 
@@ -22,7 +21,7 @@ const (
 )
 
 func main() {
-	runtime.GOMAXPROCS(runtime.NumCPU())
+	//runtime.GOMAXPROCS(runtime.NumCPU()) : no need in go1.5
 
 	flag.Parse()
 
